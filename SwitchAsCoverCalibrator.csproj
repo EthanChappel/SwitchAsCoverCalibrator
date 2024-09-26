@@ -155,7 +155,7 @@
     <Content Include=".gitignore" />
     <Content Include="ASCOM.ico" />
     <Content Include="ASCOM.png" />
-    <Content Include="ReadMe.htm" />
+    <Content Include="screenshot.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".editorconfig" />
