@@ -8,9 +8,9 @@ AppName=ASCOM SwitchAsCoverCalibrator CoverCalibrator Driver
 AppVerName=ASCOM SwitchAsCoverCalibrator CoverCalibrator Driver 0.0.0
 AppVersion=1.0.0
 AppPublisher=Ethan Chappel <ethan.chappel@hotmail.com>
-AppPublisherURL=mailto:ethan.chappel@hotmail.com
-AppSupportURL=https://ascomtalk.groups.io/g/Help
-AppUpdatesURL=https://ascom-standards.org/
+AppPublisherURL=https://www.chappelastro.com
+AppSupportURL=https://github.com/EthanChappel/SwitchAsCoverCalibrator/issues
+AppUpdatesURL=https://github.com/EthanChappel/SwitchAsCoverCalibrator/releases
 VersionInfoVersion=0.0.0
 MinVersion=6.1.7601
 DefaultDirName="{cf}\ASCOM\CoverCalibrator"
@@ -22,7 +22,7 @@ Compression=lzma
 SolidCompression=yes
 ; Put there by Platform if Driver Installer Support selected
 WizardImageFile="C:\Program Files (x86)\ASCOM\Platform 6 Developer Components\Installer Generator\Resources\WizardImage.bmp"
-LicenseFile="C:\Program Files (x86)\ASCOM\Platform 6 Developer Components\Installer Generator\Resources\CreativeCommons.txt"
+LicenseFile="LICENSE.txt"
 ; {cf}\ASCOM\Uninstall\CoverCalibrator folder created by Platform, always
 UninstallFilesDir="{cf}\ASCOM\Uninstall\CoverCalibrator\SwitchAsCoverCalibrator"
 
@@ -37,7 +37,7 @@ Name: "{cf}\ASCOM\Uninstall\CoverCalibrator\SwitchAsCoverCalibrator"
 Source: "C:\Users\Programming\source\repos\SwitchAsCoverCalibrator\bin\Release\ASCOM.SwitchAsCoverCalibrator.exe"; DestDir: "{app}"
 ; TODO: Add driver assemblies into the ServedClasses folder
 ; Require a read-me HTML to appear after installation, maybe driver's Help doc
-Source: "C:\Users\Programming\source\repos\SwitchAsCoverCalibrator\ReadMe.htm"; DestDir: "{app}"; Flags: isreadme
+Source: "C:\Users\Programming\source\repos\SwitchAsCoverCalibrator\README.md"; DestDir: "{app}"; Flags: isreadme
 ; TODO: Add other files needed by your driver here (add subfolders above)
 
 
