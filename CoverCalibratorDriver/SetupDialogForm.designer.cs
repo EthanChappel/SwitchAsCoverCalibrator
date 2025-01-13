@@ -126,11 +126,11 @@ namespace ASCOM.SwitchAsCoverCalibrator.CoverCalibrator
             // 
             this.deviceLabel.AutoSize = true;
             this.deviceLabel.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.deviceLabel.Location = new System.Drawing.Point(60, 15);
+            this.deviceLabel.Location = new System.Drawing.Point(33, 15);
             this.deviceLabel.Name = "deviceLabel";
-            this.deviceLabel.Size = new System.Drawing.Size(41, 13);
+            this.deviceLabel.Size = new System.Drawing.Size(68, 13);
             this.deviceLabel.TabIndex = 12;
-            this.deviceLabel.Text = "Device";
+            this.deviceLabel.Text = "Switch driver";
             // 
             // propertiesButton
             // 
