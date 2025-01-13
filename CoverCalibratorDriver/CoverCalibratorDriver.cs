@@ -66,7 +66,6 @@ namespace ASCOM.SwitchAsCoverCalibrator.CoverCalibrator
         internal static int brightness;
         internal static bool connectedState; // variable to hold the connected state
         internal CalibratorStatus calibratorState;
-        internal static Util utilities; // Private variable to hold an ASCOM Utilities object
         internal static TraceLogger tl; // Variable to hold the trace logger object (creates a diagnostic log file with information that you specify)
 
         /// <summary>
@@ -91,7 +90,6 @@ namespace ASCOM.SwitchAsCoverCalibrator.CoverCalibrator
                 tl.LogMessage("CoverCalibrator", $"ProgID: {driverID}, Description: {driverDescription}");
 
                 connectedState = false; // Initialise connected to false
-                utilities = new Util(); //Initialise util object
 
                 // Implement additional construction here.
                 if (switchDriverName != string.Empty)
@@ -193,9 +191,7 @@ namespace ASCOM.SwitchAsCoverCalibrator.CoverCalibrator
             tl.Enabled = false;
             tl.Dispose();
             tl = null;
-            utilities.Dispose();
-            utilities = null;
-            device.Dispose();
+            device?.Dispose();
         }
 
         public bool Connected
