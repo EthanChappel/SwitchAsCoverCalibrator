@@ -159,45 +159,42 @@ namespace ASCOM.SwitchAsCoverCalibrator.CoverCalibrator
         {
             
             var switchDevice = new ASCOM.DriverAccess.Switch(SwitchDeviceName);
-            if (switchDevice != null)
+            if (switchDevice == null) { return; }
+
+            try
             {
-                try
+                brightnessSwitchComboBox.Items.Clear();
+                brightnessSwitchComboBox.BeginUpdate();
+
+                switchDevice.Connected = true;
+
+                for (short i = 0; i < switchDevice.MaxSwitch; i++)
                 {
-                    brightnessSwitchComboBox.Items.Clear();
-                    brightnessSwitchComboBox.BeginUpdate();
-
-                    switchDevice.Connected = true;
-
-                    for (short i = 0; i < switchDevice.MaxSwitch; i += 1)
-                    {
-                        if (switchDevice.CanWrite(i))
-                        {
-                            brightnessSwitchComboBox.Items.Add(switchDevice.GetSwitchName(i));
-                        }
-                    }
-
-                    brightnessSwitchComboBox.SelectedIndex = switchId;
+                    if (switchDevice.CanWrite(i) == false) { continue; }
+                    
+                    brightnessSwitchComboBox.Items.Add(new SwitchComboBoxItem(i, switchDevice.GetSwitchName(i)));
+                    if (i == switchId) { brightnessSwitchComboBox.SelectedIndex = i; }
                 }
-                catch (Exception e)
-                {
-                    var errorToolTip = new System.Windows.Forms.ToolTip() { IsBalloon = true, ShowAlways = true };
-                    errorToolTip.Show(string.Empty, deviceComboBox, 0);
-                    errorToolTip.Show($"Error from switch driver: {e.Message} {brightnessSwitchComboBox.Items.Count}", deviceComboBox);
-                }
-                finally
-                {
-                    switchDevice.Connected = false;
-                    brightnessSwitchComboBox.EndUpdate();
+            }
+            catch (Exception e)
+            {
+                var errorToolTip = new System.Windows.Forms.ToolTip() { IsBalloon = true, ShowAlways = true };
+                errorToolTip.Show(string.Empty, deviceComboBox, 0);
+                errorToolTip.Show($"Error from switch driver: {e.Message} {brightnessSwitchComboBox.Items.Count}", deviceComboBox);
+            }
+            finally
+            {
+                switchDevice.Connected = false;
+                brightnessSwitchComboBox.EndUpdate();
 
-                    var enable = brightnessSwitchComboBox.Items.Count > 0;
-                    brightnessSwitchComboBox.Enabled = enable;
-                }
+                var enable = brightnessSwitchComboBox.Items.Count > 0;
+                brightnessSwitchComboBox.Enabled = enable;
             }
         }
 
-        private void brightnessSwitchComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void BrightnessSwitchComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            switchId = (short)brightnessSwitchComboBox.SelectedIndex;
+            switchId = (short) ((SwitchComboBoxItem) brightnessSwitchComboBox.SelectedItem).Item1;
             SetOkButtonState();
         }
 
@@ -246,5 +243,15 @@ namespace ASCOM.SwitchAsCoverCalibrator.CoverCalibrator
         }
 
         public override string ToString() { return Name; }
+    }
+
+    public class SwitchComboBoxItem : Tuple<int, string>
+    {
+        public SwitchComboBoxItem(int item1, string item2) : base(item1, item2) {}
+
+        public override string ToString()
+        {
+            return Item2;
+        }
     }
 }

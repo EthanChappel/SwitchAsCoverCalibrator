@@ -110,7 +110,7 @@ namespace ASCOM.SwitchAsCoverCalibrator.CoverCalibrator
             this.brightnessSwitchComboBox.Name = "brightnessSwitchComboBox";
             this.brightnessSwitchComboBox.Size = new System.Drawing.Size(302, 21);
             this.brightnessSwitchComboBox.TabIndex = 9;
-            this.brightnessSwitchComboBox.SelectedIndexChanged += new System.EventHandler(this.brightnessSwitchComboBox_SelectedIndexChanged);
+            this.brightnessSwitchComboBox.SelectedIndexChanged += new System.EventHandler(this.BrightnessSwitchComboBox_SelectedIndexChanged);
             // 
             // brightnessLabel
             // 
