@@ -5,8 +5,8 @@
 [Setup]
 AppID={{bb0888d6-dde8-4b05-a467-3ef8e6c854bc}
 AppName=ASCOM SwitchAsCoverCalibrator CoverCalibrator Driver
-AppVerName=ASCOM SwitchAsCoverCalibrator CoverCalibrator Driver 0.0.0
-AppVersion=1.0.0
+AppVerName=ASCOM SwitchAsCoverCalibrator CoverCalibrator Driver 1.0.1
+AppVersion=1.0.1
 AppPublisher=Ethan Chappel <ethan.chappel@hotmail.com>
 AppPublisherURL=https://www.chappelastro.com
 AppSupportURL=https://github.com/EthanChappel/SwitchAsCoverCalibrator/issues
@@ -34,10 +34,10 @@ Name: "{cf}\ASCOM\Uninstall\CoverCalibrator\SwitchAsCoverCalibrator"
 ; TODO: Add subfolders below {app} as needed (e.g. Name: "{app}\MyFolder")
 
 [Files]
-Source: "C:\Users\Programming\source\repos\SwitchAsCoverCalibrator\bin\Release\ASCOM.SwitchAsCoverCalibrator.exe"; DestDir: "{app}"
+Source: ".\bin\Release\ASCOM.SwitchAsCoverCalibrator.exe"; DestDir: "{app}"
 ; TODO: Add driver assemblies into the ServedClasses folder
 ; Require a read-me HTML to appear after installation, maybe driver's Help doc
-Source: "C:\Users\Programming\source\repos\SwitchAsCoverCalibrator\README.md"; DestDir: "{app}"; Flags: isreadme
+Source: ".\README.md"; DestDir: "{app}"; Flags: isreadme
 ; TODO: Add other files needed by your driver here (add subfolders above)
 
 
@@ -60,7 +60,7 @@ Filename: "{app}\ASCOM.SwitchAsCoverCalibrator.exe"; Parameters: "/unregister"
 
 [Code]
 const
-   REQUIRED_PLATFORM_VERSION = 6.2;    // Set this to the minimum required ASCOM Platform version for this application
+   REQUIRED_PLATFORM_VERSION = 6.6;    // Set this to the minimum required ASCOM Platform version for this application
 
 //
 // Function to return the ASCOM Platform's version number as a double.
