@@ -20,6 +20,8 @@ namespace ASCOM.LocalServer
         {
             InitializeComponent();
             this.ShowInTaskbar = false;
+            this.MinimizeBox = false;
+            this.MaximizeBox = false;
             this.Visible = false;
         }
 

@@ -37,19 +37,19 @@ namespace ASCOM.LocalServer
             // 
             this.label1.Location = new System.Drawing.Point(12, 10);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(199, 33);
+            this.label1.Size = new System.Drawing.Size(299, 17);
             this.label1.TabIndex = 0;
-            this.label1.Text = "This is an ASCOM driver, not a program for you to use.";
+            this.label1.Text = "ASCOM driver server is running.";
             // 
-            // frmMain
+            // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(233, 52);
+            this.ClientSize = new System.Drawing.Size(323, 36);
             this.Controls.Add(this.label1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "frmMain";
-            this.Text = "ASCOM.SwitchAsCoverCalibrator.CoverCalibrator Driver Server";
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Name = "FrmMain";
+            this.Text = "Switch as Cover Calibrator ASCOM Driver Server";
             this.ResumeLayout(false);
 
         }
