@@ -168,13 +168,15 @@ namespace ASCOM.SwitchAsCoverCalibrator.CoverCalibrator
 
                 switchDevice.Connected = true;
 
+                short selectedIndex = -1;
                 for (short i = 0; i < switchDevice.MaxSwitch; i++)
                 {
                     if (switchDevice.CanWrite(i) == false) { continue; }
                     
                     brightnessSwitchComboBox.Items.Add(new SwitchComboBoxItem(i, switchDevice.GetSwitchName(i)));
-                    if (i == switchId) { brightnessSwitchComboBox.SelectedIndex = i; }
+                    if (i == switchId) { selectedIndex = (short) (brightnessSwitchComboBox.Items.Count - 1); }
                 }
+                brightnessSwitchComboBox.SelectedIndex = selectedIndex;
             }
             catch (Exception e)
             {
