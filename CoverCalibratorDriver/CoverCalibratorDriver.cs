@@ -290,7 +290,7 @@ namespace ASCOM.SwitchAsCoverCalibrator.CoverCalibrator
         {
             get
             {
-                tl.LogMessage("CoverState Get", "Not implemented");
+                tl.LogMessage("CoverState Get", $"{CoverStatus.NotPresent}");
                 return CoverStatus.NotPresent;
             }
         }
@@ -329,7 +329,7 @@ namespace ASCOM.SwitchAsCoverCalibrator.CoverCalibrator
         {
             get
             {
-                tl.LogMessage("CalibratorState Get", "Not implemented");
+                tl.LogMessage("CalibratorState Get", $"{calibratorState}");
                 return calibratorState;
             }
         }
@@ -341,8 +341,8 @@ namespace ASCOM.SwitchAsCoverCalibrator.CoverCalibrator
         {
             get
             {
-                tl.LogMessage("Brightness Get", "Not implemented");
                 brightness = (int)device.GetSwitchValue(switchId);
+                tl.LogMessage("Brightness Get", $"{brightness}");
                 return brightness;
             }
         }
@@ -354,8 +354,9 @@ namespace ASCOM.SwitchAsCoverCalibrator.CoverCalibrator
         {
             get
             {
-                tl.LogMessage("MaxBrightness Get", "Not implemented");
-                return (int) Math.Floor(device.MaxSwitchValue(switchId));
+                var r = (int)Math.Floor(device.MaxSwitchValue(switchId));
+                tl.LogMessage("MaxBrightness Get", $"{r}");
+                return r;
             }
         }
 
@@ -365,7 +366,7 @@ namespace ASCOM.SwitchAsCoverCalibrator.CoverCalibrator
         /// <param name="Brightness"></param>
         public void CalibratorOn(int Brightness)
         {
-            tl.LogMessage("CalibratorOn", $"Not implemented. Value set: {Brightness}");
+            tl.LogMessage("CalibratorOn", $"Value set: {Brightness}");
             calibratorState = CalibratorStatus.NotReady;
             device.SetSwitchValue(switchId, Brightness);
             brightness = Brightness;
@@ -377,9 +378,8 @@ namespace ASCOM.SwitchAsCoverCalibrator.CoverCalibrator
         /// </summary>
         public void CalibratorOff()
         {
-            tl.LogMessage("CalibratorOff", "Not implemented");
+            tl.LogMessage("CalibratorOff", "0");
             calibratorState = CalibratorStatus.NotReady;
-            brightness = (int)device.GetSwitchValue(switchId);
             device.SetSwitchValue(switchId, 0);
             calibratorState = CalibratorStatus.Ready;
 
