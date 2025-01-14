@@ -233,7 +233,7 @@ namespace ASCOM.SwitchAsCoverCalibrator.CoverCalibrator
 
         private void deviceComboBox_MouseDown(object sender, MouseEventArgs e)
         {
-            if (ModifierKeys != Keys.Alt) { return; }
+            if (e.Button != MouseButtons.Right) { return; }
             
             var c = new ASCOM.Utilities.Chooser { DeviceType = "Switch" };
 
