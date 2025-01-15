@@ -155,7 +155,6 @@ namespace ASCOM.SwitchAsCoverCalibrator.CoverCalibrator
 
         private void RefreshSwitches()
         {
-            // Set the cursor to wait while processing
             if (InvokeRequired)
             {
                 Invoke(new Action(() =>
@@ -167,8 +166,6 @@ namespace ASCOM.SwitchAsCoverCalibrator.CoverCalibrator
                     cmdOK.Enabled = false;
                 }));
             }
-
-            // Run the main refresh logic on a separate thread
 
             var switchDevice = new ASCOM.DriverAccess.Switch(SwitchDeviceName);
             if (switchDevice == null) { return; }
