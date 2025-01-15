@@ -14,18 +14,13 @@
 // Author:		(XXX) Your N. Here <your@email.here>
 //
 
-using ASCOM;
 using ASCOM.DeviceInterface;
-using ASCOM.DriverAccess;
 using ASCOM.LocalServer;
 using ASCOM.Utilities;
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Globalization;
 using System.Runtime.InteropServices;
-using System.Text;
 using System.Windows.Forms;
 
 namespace ASCOM.SwitchAsCoverCalibrator.CoverCalibrator

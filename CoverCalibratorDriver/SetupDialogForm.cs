@@ -3,22 +3,12 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-using ASCOM.DeviceInterface;
-using ASCOM.DriverAccess;
 using ASCOM.Utilities;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ASCOM.SwitchAsCoverCalibrator.CoverCalibrator
 {
@@ -132,25 +122,25 @@ namespace ASCOM.SwitchAsCoverCalibrator.CoverCalibrator
             var index = -1;
 
             var devices = new Profile().RegisteredDevices("Switch");
-                try
-                {
+            try
+            {
                 for (int i = 0; i < devices.Count; i++)
                 {
                     var d = new SwitchDevice((KeyValuePair)devices[i]);
-
+                        
                     deviceComboBox.Items.Add(d);
 
                     if (index == -1 && ((d.ProgID == switchDeviceName && device == string.Empty) || d.ProgID == device))
-            {
-                    index = i;
+                    {
+                        index = i;
+                    }
                 }
-            }
             }
             finally
             {
                 deviceComboBox.EndUpdate();
-            deviceComboBox.SelectedIndex = index;
-        }
+                deviceComboBox.SelectedIndex = index;
+            }
         }
 
         private void RefreshSwitches()
