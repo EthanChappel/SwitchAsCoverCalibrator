@@ -259,7 +259,7 @@ namespace ASCOM.SwitchAsCoverCalibrator.CoverCalibrator
         private void propertiesButton_Click(object sender, EventArgs e)
         {
             new ASCOM.DriverAccess.Switch(SwitchDeviceName).SetupDialog();
-            RefreshSwitches();
+            Task.Run(RefreshSwitches);
         }
 
         private void SetOkButtonState()
