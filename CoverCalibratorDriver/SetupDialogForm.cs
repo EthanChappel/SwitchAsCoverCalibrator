@@ -161,7 +161,14 @@ namespace ASCOM.SwitchAsCoverCalibrator.CoverCalibrator
             // Set the cursor to wait while processing
             if (InvokeRequired)
             {
-                Invoke(new Action(() => Cursor = Cursors.WaitCursor));
+                Invoke(new Action(() =>
+                {
+                    Cursor = Cursors.WaitCursor;
+                    deviceComboBox.Enabled = false;
+                    propertiesButton.Enabled = false;
+                    cmdCancel.Enabled = false;
+                    cmdOK.Enabled = false;
+                }));
             }
 
             // Run the main refresh logic on a separate thread
@@ -218,10 +225,13 @@ namespace ASCOM.SwitchAsCoverCalibrator.CoverCalibrator
                 {
                     brightnessSwitchComboBox.EndUpdate();
                     brightnessSwitchComboBox.Enabled = brightnessSwitchComboBox.Items.Count > 0;
-                }));
 
-                // Restore the cursor back to default after processing
-                Invoke(new Action(() => Cursor = Cursors.Default));
+                    Cursor = Cursors.Default;
+                    deviceComboBox.Enabled = true;
+                    propertiesButton.Enabled = true;
+                    cmdCancel.Enabled = true;
+                    SetOkButtonState();
+                }));
             }
         }
 
