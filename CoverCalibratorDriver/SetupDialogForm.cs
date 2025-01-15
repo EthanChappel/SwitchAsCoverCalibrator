@@ -171,8 +171,7 @@ namespace ASCOM.SwitchAsCoverCalibrator.CoverCalibrator
 
             try
             {
-                // Access UI components through Invoke to avoid cross-thread exceptions
-                brightnessSwitchComboBox.Invoke(new Action(() =>
+                Invoke(new Action(() =>
                 {
                     brightnessSwitchComboBox.Items.Clear();
                     brightnessSwitchComboBox.BeginUpdate();
@@ -186,24 +185,25 @@ namespace ASCOM.SwitchAsCoverCalibrator.CoverCalibrator
                     if (switchDevice.CanWrite(i) == false) { continue; }
 
                     var switchItem = new SwitchComboBoxItem(i, switchDevice.GetSwitchName(i));
-                    brightnessSwitchComboBox.Invoke(new Action(() =>
+                    Invoke(new Action(() =>
                     {
                         brightnessSwitchComboBox.Items.Add(switchItem);
                     }));
+
                     if (i == switchId)
                     {
                         selectedIndex = (short)(brightnessSwitchComboBox.Items.Count - 1);
                     }
                 }
 
-                brightnessSwitchComboBox.Invoke(new Action(() =>
+                Invoke(new Action(() =>
                 {
                     brightnessSwitchComboBox.SelectedIndex = selectedIndex;
                 }));
             }
             catch (Exception e)
             {
-                brightnessSwitchComboBox.Invoke(new Action(() =>
+                Invoke(new Action(() =>
                 {
                     var errorToolTip = new System.Windows.Forms.ToolTip() { IsBalloon = true, ShowAlways = true };
                     errorToolTip.Show(string.Empty, deviceComboBox, 5000);
@@ -214,7 +214,7 @@ namespace ASCOM.SwitchAsCoverCalibrator.CoverCalibrator
             {
                 switchDevice.Connected = false;
 
-                brightnessSwitchComboBox.Invoke(new Action(() =>
+                Invoke(new Action(() =>
                 {
                     brightnessSwitchComboBox.EndUpdate();
                     brightnessSwitchComboBox.Enabled = brightnessSwitchComboBox.Items.Count > 0;
