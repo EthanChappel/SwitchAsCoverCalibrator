@@ -124,36 +124,33 @@ namespace ASCOM.SwitchAsCoverCalibrator.CoverCalibrator
             }
         }
 
-        private void RefreshDevices()
+        private void RefreshDevices(string device = "")
         {
             deviceComboBox.Items.Clear();
             deviceComboBox.BeginUpdate();
 
+            var index = -1;
+
             var devices = new Profile().RegisteredDevices("Switch");
-            foreach (KeyValuePair device in devices)
-            {
                 try
                 {
-                    deviceComboBox.Items.Add(new SwitchDevice(device));
-                }
-                catch (Exception)
+                for (int i = 0; i < devices.Count; i++)
                 {
+                    var d = new SwitchDevice((KeyValuePair)devices[i]);
 
-                }
-            }
-            deviceComboBox.EndUpdate();
+                    deviceComboBox.Items.Add(d);
 
-            int index = -1;
-            for (int i = 0; i < deviceComboBox.Items.Count; i++)
+                    if (index == -1 && ((d.ProgID == switchDeviceName && device == string.Empty) || d.ProgID == device))
             {
-                if (((SwitchDevice)deviceComboBox.Items[i]).ProgID == switchDeviceName)
-                {
                     index = i;
-                    break;
                 }
             }
-
+            }
+            finally
+            {
+                deviceComboBox.EndUpdate();
             deviceComboBox.SelectedIndex = index;
+        }
         }
 
         private void RefreshSwitches()
@@ -245,14 +242,10 @@ namespace ASCOM.SwitchAsCoverCalibrator.CoverCalibrator
         {
             if (e.Button != MouseButtons.Right) { return; }
             
-            var c = new ASCOM.Utilities.Chooser { DeviceType = "Switch" };
-
+            var c = new Chooser { DeviceType = "Switch" };
             var progId = c.Choose(SwitchDeviceName);
 
-            if (progId == string.Empty) { return; }
-
-            RefreshDevices();
-            deviceComboBox.SelectedItem = deviceComboBox.Items.Cast<SwitchDevice>().Where(i => i.ProgID == progId).FirstOrDefault();
+            RefreshDevices(progId);
         }
 
         private void deviceComboBox_SelectedIndexChanged(object sender, EventArgs e)
